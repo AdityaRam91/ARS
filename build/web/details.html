@@ -1,0 +1,237 @@
+<html>
+<head>
+    <title>Welcome To Registration Form</title>
+    <style>
+        body {
+            margin: 0px;
+            background-color: lightblue;
+            /* color: #f9fcf5; */
+            color: coral;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #main {
+            width: 1000px;
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+            padding-left: 10px;
+            margin-top: 30px;
+            /* border-top: 3px double #f1f1f1;
+            border-bottom: 3px double #f1f1f1; */
+            padding-top: 20px;
+        }
+
+        #main table,
+        th,
+        td {
+            /* font-family: "Comic Sans MS", cursive; */
+            border: 2px solid white;
+            border-radius: 5px;
+            border-collapse: collapse;
+        }
+
+        /* css code for textbox */
+        #main .tb {
+            height: 28px;
+            width: 150px;
+            border: 1px solid #f26724;
+            color: #fd7838;
+            font-weight: bold;
+            /* border-left: 5px solid #f7f7f7; */
+            opacity: 0.9;
+        }
+
+        #main .tb:focus {
+            height: 28px;
+            border: 1px solid #f26724;
+            outline: none;
+            border-left: 5px solid #f7f7f7;
+        }
+
+        /* css code for button*/
+        #main .btn {
+            width: 150px;
+            height: 32px;
+            outline: none;
+            color: #f7f7f7;
+            font-weight: bold;
+            border: 0px solid #f26724;
+            text-shadow: 0px 0.5px 0.5px #fff;
+            border-radius: 2px;
+            font-weight: 600;
+            color: #f26724;
+            letter-spacing: 1px;
+            font-size: 14px;
+            background-color: #f1f1f1;
+            -webkit-transition: 1s;
+            -moz-transition: 1s;
+            transition: 1s;
+
+        }
+
+        #left {
+            margin-top: 30px;
+            position: relative;
+            left: 30%;
+        }
+
+        #next {
+            margin-top: 30px;
+            position: relative;
+            left: 40%;
+        }
+
+        #main .btn:hover {
+            background-color: #f26724;
+            outline: none;
+            border-radius: 2px;
+            color: #f1f1f1;
+            border: 1px solid #f1f1f1;
+            -webkit-transition: 1s;
+            -moz-transition: 1s;
+            transition: 1s;
+        }
+
+        .invisible {
+            display: none;
+        }
+
+        tbody input {
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="invisible">
+        <table>
+        <tr>
+            <td id="col0"><input type="text" placeholder="Enter Name" name="names" class="tb"
+                    required /></td>
+            <td id="col1"><input type="text" placeholder="Enter email-id" name="mails" class="tb"
+                    required /></td>
+            <td id="col2"><input type="text" placeholder="Enter mobile number" name="number" class="tb"
+                    required /></td>
+            <td id="col3"><input type="number" placeholder="Enter age" min="0" name="age" class="tb"
+                    required /></td>
+            <td id="col6"> <input type="button" value="&Cross;" onclick="deleteRows(this)"
+                    class="btn" /></td>
+        </tr>
+    </table>
+        </div>
+    <div id="main">
+        <div class="h-tag">
+            <center>
+                <h2>Enter passenger details</h2>
+            </center>
+        </div>
+  
+        <form method="post">
+               <div class="invisible">
+        <input type="text" name="fid" id="fid">
+        <input type="text" name="src" id="from">
+        <input type="text" name="dest" id="to">
+        <input type="text" name="tdate" id="tdate">
+        <input type="text" name="Class" id="Class">
+                </div>
+
+            <div class="login">
+                <table cellspacing="2" align="center" cellpadding="8" border="0" id="data">
+                    <thead>
+                        <th>Name</th>
+                        <th>Email-id</th>
+                        <th>Mobile</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th><input type="button" onclick="addRows()" value="&plus;" class="btn"></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" placeholder="Enter Name" name="names" class="tb"
+                                    required /></td>
+                            <td><input type="text" placeholder="Enter email-id" name="mails" class="tb"
+                                    required /></td>
+                            <td><input type="text" placeholder="Enter mobile number" name="number" class="tb"
+                                    required /></td>
+                            <td><input type="number" placeholder="Enter age" min="0" name="age" class="tb"
+                                    required /></td>
+                            <td id="dynamic_insert">
+                            </td>
+                            <td style="display: none;"><input type="text" name="gender" /></td>
+                            <td> <input type="button" value="&Cross;" onclick="deleteRows(this)"
+                                    class="btn" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <input type="reset" class="btn" id="left" value="clear">
+            <button formaction="Data" onclick="setdata()" class="btn" id="next">Continue</button> 
+           
+
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('dynamic_insert').innerHTML="<td><input type='radio' name=gender1 required>Male<br><input type='radio'  name=gender1 required>Female</td>";
+        var flag=2;
+        function addRows() {
+            var table = document.getElementById('data');
+            var new_row=table.insertRow();
+            
+            for(var i=0;i<=6;i++)
+            {
+                var cell=new_row.insertCell();
+                if(i===4){
+                    cell.innerHTML="<td><input type='radio' name=gender"+flag+" required>Male<br><input type='radio'  name=gender"+flag+" required>Female</td>";
+                }
+                else if(i===5){
+                    cell.innerHTML="<td><input type='text' name='gender'/></td>";
+                   cell.style.display="none";
+              //      console.log(cell);
+                }
+                else{
+                var copy=document.getElementById('col'+i).innerHTML;
+                cell.innerHTML=copy;
+                }
+            }
+            flag++;
+        }
+        function deleteRows(This) {
+            if (This.closest('tbody').childElementCount === 1) {
+                alert('minimum number of passengers is 1');
+            }
+            else {
+                This.closest('tr').remove();
+            }
+        }
+        function setdata() {
+             var src = localStorage.getItem('src');
+             var dest = localStorage.getItem('dest');
+             var fid = localStorage.getItem('fid');
+             var tdate=localStorage.getItem('tdate');
+             var Class=localStorage.getItem('Class');
+             document.getElementById("from").value = src;
+             document.getElementById("to").value = dest;
+             document.getElementById("fid").value = fid;
+             document.getElementById("tdate").value=tdate;
+             document.getElementById("Class").value=Class;
+            var table=document.getElementById('data');
+            var row=table.rows.length;
+            for(var i=1;i<row;i++){
+                var cell=table.rows[i].cells[4].innerHTML;
+                var dt=cell.substring(26,33);
+                var rds=document.getElementsByName(dt);
+                var val;
+                if(rds[0].checked)val='Male';
+                else val='Female';
+               table.rows[i].cells[5].innerHTML="<td><input type='text' name='gender' value="+val+" /></td>";
+            }
+        }
+    </script>
+</body>
+</html> 
